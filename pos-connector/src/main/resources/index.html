@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket STOMP Test</title>
+    <!-- Include SockJS and STOMP.js libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+</head>
+<body>
+    <script>
+        // Ensure the libraries are loaded before running the script
+        window.onload = function() {
+            // Connect to the WebSocket endpoint
+            const socket = new SockJS('http://localhost:8080/ws-poc');
+            const stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+
+                // Subscribe to the topic to receive messages
+                stompClient.subscribe('/topic/getPaymentOrderResponse', function (response) {
+                    console.log('Received response:', JSON.parse(response.body));
+                });
+
+                // Create and send a message
+                const message = {
+                    operationId: 'op123',
+                    messageId: 'msg456',
+                    merchantRefNum: 'ref789',
+                    timeStamp: '2024-08-14T10:30:00Z',
+                    data: {
+                        key1: 'value1',
+                        key2: 'value2'
+                    }
+                };
+
+                stompClient.send('/generatePaymentOrderRequest', {}, JSON.stringify(message));
+            }, function (error) {
+                console.error('Error connecting to WebSocket:', error);
+            });
+        };
+    </script>
+</body>
+</html>
