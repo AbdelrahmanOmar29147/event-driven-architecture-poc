@@ -9,6 +9,7 @@ import org.mapstruct.Mappings;
 
 @Mapper(componentModel = "spring")
 public interface EventModelMapper {
+    @Mapping(target = "operationId", source = "body.operationId")
     @Mapping(target = "amount", source = "body.amount")
     @Mapping(target = "convenienceFee", source = "body.convenienceFee")
     @Mapping(target = "tip", source = "body.tip")
