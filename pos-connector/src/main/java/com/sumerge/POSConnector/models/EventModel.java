@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EventModel<T> {
-    private String operationId;
     private String messageId;
     private String merchantRefNum;
 //    private LocalDateTime timeStamp;
