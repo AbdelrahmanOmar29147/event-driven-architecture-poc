@@ -21,11 +21,15 @@ public class GatewayConsumer {
 
     @KafkaListener(topics = Topics.PAYMENT_ORDER_REQUEST)
     public void paymentOrderRequestListener(EventModel<PaymentOrderRequestEvent> event) {
-        log.info("KAFKA IS ALIVE!: " + event.toString());
         PaymentOrderRequestEvent paymentOrderRequestEvent = MAPPER.convertValue(event.getBody(), PaymentOrderRequestEvent.class);
-        log.info("KAFKA IS ALIVE!: " + paymentOrderRequestEvent.toString());
         event.setBody(paymentOrderRequestEvent);
         gatewayService.processAndSaveEvent(event);
     }
 
+    @KafkaListener(topics = Topics.PAYMENT_REFUND_REQUEST)
+    public void paymentRefundRequestListener(EventModel<PaymentOrderRequestEvent> event) {
+        PaymentOrderRequestEvent paymentOrderRequestEvent = MAPPER.convertValue(event.getBody(), PaymentOrderRequestEvent.class);
+        event.setBody(paymentOrderRequestEvent);
+        gatewayService.processAndSaveEvent(event);
+    }
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentOrderRequestEvent {
+    private String operationId;
     private String amount;
     private String convenienceFee;
     private Boolean tip;

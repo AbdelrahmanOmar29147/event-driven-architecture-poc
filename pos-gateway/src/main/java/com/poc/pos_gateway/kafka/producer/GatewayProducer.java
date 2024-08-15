@@ -10,9 +10,22 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class GatewayProducer {
-    private final KafkaTemplate<String, EventModel> kafkaTemplate;
+    private final KafkaTemplate<Object, EventModel<?>> kafkaTemplate;
 
-    public void sendMessage(PaymentOrderRequestEvent paymentOrder) {
+    //IMPLEMENTATION
+    public void sendPaymentOrderResponse(PaymentOrderRequestEvent paymentOrder) {
+        kafkaTemplate.send(Topics.PAYMENT_ORDER_REQUEST, new EventModel<PaymentOrderRequestEvent>("generatePaymentOrderRequest", "1273", "19995", paymentOrder));
+    }
+
+    public void sendPaymentRefundResponse(PaymentOrderRequestEvent paymentOrder) {
+        kafkaTemplate.send(Topics.PAYMENT_ORDER_REQUEST, new EventModel<PaymentOrderRequestEvent>("generatePaymentOrderRequest", "1273", "19995", paymentOrder));
+    }
+
+    //TESTING(TO BE REMOVED)
+    public void sendPaymentOrderRequest(PaymentOrderRequestEvent paymentOrder) {
+        kafkaTemplate.send(Topics.PAYMENT_ORDER_REQUEST, new EventModel<PaymentOrderRequestEvent>("generatePaymentOrderRequest", "1273", "19995", paymentOrder));
+    }
+    public void sendPaymentRefundRequest(PaymentOrderRequestEvent paymentOrder) {
         kafkaTemplate.send(Topics.PAYMENT_ORDER_REQUEST, new EventModel<PaymentOrderRequestEvent>("generatePaymentOrderRequest", "1273", "19995", paymentOrder));
     }
 }
