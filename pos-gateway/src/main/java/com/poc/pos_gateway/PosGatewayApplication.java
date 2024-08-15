@@ -1,7 +1,7 @@
 package com.poc.pos_gateway;
 
 import com.poc.pos_gateway.kafka.producer.GatewayProducer;
-import com.poc.pos_gateway.model.dto.kafka.PaymentOrderRequestEvent;
+import com.poc.pos_gateway.model.dto.kafka.request.PaymentOrderRequestEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,12 +19,12 @@ public class PosGatewayApplication {
 		SpringApplication.run(PosGatewayApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-		return args -> {
-			PaymentOrderRequestEvent paymentOrderRequestEvent = new PaymentOrderRequestEvent("78", "0", false, 90, "297");
-			// Send the message
-			gatewayProducer.sendMessage(paymentOrderRequestEvent);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+//		return args -> {
+//			PaymentOrderRequestEvent paymentOrderRequestEvent = new PaymentOrderRequestEvent("78", "0", "123",false, 90, "297");
+//			// Send the message
+//			gatewayProducer.sendPaymentOrderRequest(paymentOrderRequestEvent);
+//		};
+//	}
 }

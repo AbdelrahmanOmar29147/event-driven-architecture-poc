@@ -1,4 +1,4 @@
-package com.poc.pos_gateway.model.dto.kafka;
+package com.poc.pos_gateway.model.dto.kafka.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
