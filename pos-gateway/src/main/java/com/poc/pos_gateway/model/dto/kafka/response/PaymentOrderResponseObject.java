@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentOrderResponseEvent  {
-    String operationId;
-    String messageId;
-    String merchantRefNum;
-    String timeStamp;
-    PaymentOrderResponseObject data;
+public class PaymentOrderResponseObject
+{
+    private String qrCode;
 }

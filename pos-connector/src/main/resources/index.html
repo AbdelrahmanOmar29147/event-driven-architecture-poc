@@ -22,8 +22,12 @@
                     merchantRefNum: 'ref789',
                     timeStamp: '2024-08-14T10:30:00Z',
                     data: {
-                        key1: 'value1',
-                        key2: 'value2'
+                      "operationId": "generatePaymentOrderRequest",
+                      "amount": "100.00",
+                      "convenienceFee": "2.50",
+                      "tip": true,
+                      "validity": 30,
+                      "terminalId": "T1234"
                     }
                 }));
         });

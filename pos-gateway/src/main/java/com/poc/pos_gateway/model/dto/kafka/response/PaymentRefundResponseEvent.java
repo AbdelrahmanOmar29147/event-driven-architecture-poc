@@ -8,10 +8,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentRefundResponseEvent {
-//    private String requestId;
-    private String merchantId;
-    private String customerRef;
-    private String transactionStatus;
-    private String customerIpa;
-    private String amount;
+    String requestId;
+    String merchantRefNum;
+    String timeStamp;
+    String merchantId;
+    String customerRef;
+    String transactionStatus;
+    String customerIpa;
+    String amount;
 }

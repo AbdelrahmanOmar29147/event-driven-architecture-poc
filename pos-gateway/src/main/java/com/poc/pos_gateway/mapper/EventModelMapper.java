@@ -13,14 +13,14 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface EventModelMapper {
     @Mapping(target = "operationId", source = "body.operationId")
-    @Mapping(target = "amount", source = "body.amount")
-    @Mapping(target = "convenienceFee", source = "body.convenienceFee")
-    @Mapping(target = "tip", source = "body.tip")
-    @Mapping(target = "validity", source = "body.validity")
-    @Mapping(target = "terminalId", source = "body.terminalId")
+    @Mapping(target = "amount", source = "body.data.amount")
+    @Mapping(target = "convenienceFee", source = "body.data.convenienceFee")
+    @Mapping(target = "tip", source = "body.data.tip")
+    @Mapping(target = "validity", source = "body.data.validity")
+    @Mapping(target = "terminalId", source = "body.data.terminalId")
     PaymentOrder eventModelToPaymentOrderRequest(EventModel<PaymentOrderRequestEvent> eventModel);
 
-    @Mapping(target = "qrCode", source = "body.qrCode")
+    @Mapping(target = "qrCode", source = "body.data.qrCode")
     PaymentOrder eventModelToPaymentOrderResponse(EventModel<PaymentOrderResponseEvent> eventModel);
 
     @Mapping(target = "originalMerchantRefNum", source = "body.originalMerchantRefNum")

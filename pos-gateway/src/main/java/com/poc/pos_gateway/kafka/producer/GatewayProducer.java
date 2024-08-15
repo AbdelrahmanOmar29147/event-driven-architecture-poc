@@ -23,12 +23,4 @@ public class GatewayProducer {
     public void sendPaymentRefundResponse(EventModel<PaymentRefundResponseEvent> paymentRefundResponse) {
         kafkaTemplate.send(Topics.PAYMENT_REFUND_RESPONSE, paymentRefundResponse);
     }
-
-    //TESTING(TO BE REMOVED)
-    public void sendPaymentOrderRequest(PaymentOrderRequestEvent paymentOrderRequestEvent) {
-        kafkaTemplate.send(Topics.PAYMENT_ORDER_REQUEST, new EventModel<PaymentOrderRequestEvent>( "1273", "19995", "1999-97-21 09:24:56",paymentOrderRequestEvent));
-    }
-    public void sendPaymentRefundRequest(PaymentRefundRequestEvent paymentRefundRequestEvent) {
-        kafkaTemplate.send(Topics.PAYMENT_REFUND_REQUEST, new EventModel<PaymentRefundRequestEvent>( "1273", "19995", "1999-97-21 09:24:56",paymentRefundRequestEvent));
-    }
 }
