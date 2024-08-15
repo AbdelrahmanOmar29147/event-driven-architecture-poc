@@ -15,9 +15,9 @@ public class GatewayProducer {
     private final KafkaTemplate<String, EventModel> kafkaTemplate;
 
     public void sendMessage(RefundInput refundInput) {
-        kafkaTemplate.send(Topics.PAYMENT_REFUND_RESPONSE, new EventModel<RefundInput>("PaymentRefund", refundInput.getRequestId(), refundInput.getMerchantRefNum(), refundInput));
+        kafkaTemplate.send(Topics.PAYMENT_REFUND_REQUEST, new EventModel<RefundInput>("PaymentRefund", refundInput.getRequestId(), refundInput.getMerchantRefNum(), refundInput));
     }
     public void sendMessage(WebsocketMessage message) {
-        kafkaTemplate.send(Topics.PAYMENT_ORDER_RESPONSE, new EventModel<WebsocketMessage>("generatePaymentOrderRequest", message.getMessageId(), message.getMerchantRefNum(), message));
+        kafkaTemplate.send(Topics.PAYMENT_ORDER_REQUEST, new EventModel<WebsocketMessage>("generatePaymentOrderRequest", message.getMessageId(), message.getMerchantRefNum(), message));
     }
 }
